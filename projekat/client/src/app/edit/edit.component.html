@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-10">
+        <form class="form-inline" (ngSubmit)="filter()">
+        <div class="form-inline">
+        Kategorija:
+        <select class="form-control" name="genre" [(ngModel)]="genre">
+        <option *ngFor="let zanr of zanrovi" ngValue="{{zanr?.naziv}}">{{zanr?.naziv}}</option>
+        </select>
+        Naslov:<input name="title" class="form-control" [(ngModel)]="title">
+        <input type="submit" value="filter" class="btn btn-default">
+        </div>
+        </form>
+        </div>
+        <br/>
+        <br/>
+    
+    <div class="pull-right">
+            <div class="btn-group">
+                <button class="btn btn-default" [disabled]="currentPage<1" (click)="changePage(-1)"><</button>
+                <button class="btn btn-default" [disabled]="currentPage>numberOfPages-2" (click)="changePage(1)">></button>
+            </div>
+        </div>
+<div class="col-md-12">
+    <table class="table table-striped">
+    <tr>
+        <th>naslov</th>
+        <th>radnja</th>
+        <th>zanr</th>
+        <th>akcija</th>
+    </tr>
+<tr *ngFor="let f of filmovi">
+    <td>{{f.naslov}}</td>
+    <td>{{f.radnja}}</td>
+    <td>{{f.zanr.naziv}}</td>
+    <td>
+        <button class="btn btn-default" (click)="delete(f)">izbrisi</button>
+        <a class="btn btn-default" href="dodaj/{{f.id}}" (click)="edit(f)">menjaj</a>
+       
+    </td>
+</table>
+</div>
+</div>
+<a class="btn btn-default" href="dodaj">Dodaj</a>

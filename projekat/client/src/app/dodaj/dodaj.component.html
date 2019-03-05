@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-12">
+    <form class="form" (ngSubmit)="save()">
+    <div class="form-group">
+    Naslov:<input name="naslov" class="form-control" [(ngModel)]="film.naslov">
+    </div>
+    <div class="form-group">
+    Radnja:<input name="radnja" class="form-control" [(ngModel)]="film.radnja">
+    </div>
+    <div class="form-group">
+    Zanr:
+    <select class="form-control" name="zanr" [compareWith]="byId" [(ngModel)]="film.zanr">
+    <option *ngFor="let zanr of zanrovi" [ngValue]="zanr">{{zanr?.naziv}}</option>
+    </select>
+    </div>
+    
+    <input type="submit" value="Sacuvaj" class="btn btn-default"> &nbsp;
+    <button class="btn btn-default" (click)="reset()">Ponisti</button>
+    </form>
+    
+    </div>
+    </div>
